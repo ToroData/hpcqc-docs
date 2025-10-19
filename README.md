@@ -9,7 +9,7 @@ Currently, this documentation is in the proposal and design phase —no producti
 ## Website
 
 The documentation is published and versioned using [mike](https://github.com/jimporter/mike) and the site is available at:  
-[https://torodata.github.io/hpcqc-docs/stable/](https://torodata.github.io/hpcqc-docs/stable/)  
+[https://torodata.github.io/hpcqc-docs/](https://torodata.github.io/hpcqc-docs/)  
 
 The version selector in the top right allows navigation among published versions.
 

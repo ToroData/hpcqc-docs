@@ -1,4 +1,5 @@
 site_name: HPCQC Architecture Stack
+site_url: https://torodata.github.io/hpcqc-docs/
 site_description: "Hybrid High-Performance and Quantum Computing Architecture Stack"
 theme:
   name: material

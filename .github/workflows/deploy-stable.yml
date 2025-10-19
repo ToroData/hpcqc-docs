@@ -1,0 +1,43 @@
+name: Deploy docs (stable on main)
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'mkdocs.yml'
+      - 'docs/**'
+      - '.github/workflows/deploy-stable.yml'
+  workflow_dispatch: {}
+concurrency:
+  group: docs-stable
+  cancel-in-progress: true
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install deps
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install mkdocs==1.6.1 mkdocs-material==9.6.22 mkdocs-material-extensions==1.3.1 \
+                       pymdown-extensions==10.16.1 mike==2.1.3
+          fi
+      - name: Configure git author for GitHub Actions
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Deploy stable (update + latest)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mike deploy --push --branch gh-pages stable --update --update-aliases latest
+          mike set-default --push --branch gh-pages stable

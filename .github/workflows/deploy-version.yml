@@ -1,0 +1,56 @@
+name: Deploy docs
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to deploy"
+        required: true
+        type: string
+concurrency:
+  group: docs-release
+  cancel-in-progress: true
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install deps
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install mkdocs==1.6.1 mkdocs-material==9.6.22 mkdocs-material-extensions==1.3.1 \
+                       pymdown-extensions==10.16.1 mike==2.1.3
+          fi
+      - name: Configure git author
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Compute version
+        id: v
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            # tag refs/tags/v0.2.0 -> 0.2.0
+            echo "value=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          fi
+      - name: Deploy numbered version and update latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ver="${{ steps.v.outputs.value }}"
+          echo "Deploying version ${ver}"
+          mike deploy --push --branch gh-pages "${ver}" --update-aliases latest
+          mike set-default --push --branch gh-pages "${ver}"

@@ -1,0 +1,125 @@
+site_name: HPCQC Architecture Stack
+site_description: "Hybrid High-Performance and Quantum Computing Architecture Stack"
+theme:
+  name: material
+  favicon: https://squidfunk.github.io/mkdocs-material/assets/images/favicon.png
+  locale: en
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - toc.integrate
+    - header.autohide
+    - content.code.copy
+    - content.tabs.link
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+    - navigation.footer
+    - content.footnote.tooltips
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: purple
+      toggle:
+        icon: material/white-balance-sunny
+        name: Light mode
+    - scheme: default
+      primary: indigo
+      accent: purple
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.snippets
+  - footnotes
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: True
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - C4 Architecture Views:
+      - Index: architecture/index.md
+      - Architecture:
+          - System Context: architecture/01-system-context.md
+          - Container: architecture/02-container.md
+          - Components Middleware: architecture/03-components-middleware.md
+          - Components Runtime: architecture/04-components-runtime.md
+          - Deployment: architecture/05-deployment.md
+          - Sequence N2 Job: architecture/06-sequence-n2-job.md
+  - ADRs: 
+      - Index: adr/index.md
+      - Decisions:
+          - Record decisions: adr/0001-record-architecture-decisions.md
+          - Product: adr/0002-hybrid-hpc-qc-middleware-and-runtime-product.md
+          - C++23 + MPI + CUDA: adr/0003-base-language-and-toolchain-c-23-mpi-cuda.md
+          - OpenQASM 3: adr/0004-quantum-exchange-format-openqasm-3.md
+          - QASM3 parser (ANTLR4/C++): adr/0005-qasm3-parser-with-antlr4-in-c.md
+          - IR Space–Time DAG: adr/0006-internal-ir-space-time-dag-with-annotations.md
+          - Partition policy: adr/0007-partition-policy-wire-cuts-and-time-cuts.md
+          - Cost & fidelity: adr/0008-cost-and-fidelity-model.md
+          - Malleable HEFT: adr/0009-malleable-heft-scheduler.md
+          - Transport REST/gRPC: adr/0010-qpu-transport-and-backends-rest-grpc.md
+          - cuBLAS + cuTensorNet: adr/0011-tensor-contraction-stitching-cublas-and-cutensornet.md
+          - HDF5 + MPI-IO: adr/0012-storage-and-checkpointing-hdf5-with-mpi-io.md
+          - Observability: adr/0013-observability-logging-metrics-and-profiling.md
+          - RMS integration: adr/0014-rms-integration-slurm-hyperqueue-pbs.md
+          - pybind11: adr/0015-python-bindings-with-pybind11.md
+          - No Chapel/Charm++/UPC: adr/0016-no-chapel-charm-or-upc-in-core.md
+          - NCCL intra-node: adr/0017-nccl-for-multi-gpu-intra-node.md
+          - GA/OpenSHMEM optional: adr/0018-global-arrays-or-openshmem-as-optional.md
+          - Credential security: adr/0019-qpu-credential-security-and-management.md
+          - Apptainer: adr/0020-containers-and-reproducibility-with-apptainer.md
+          - Benchmark N2: adr/0021-benchmark-selection-n2-and-metrics.md
+          - QPU cloud limits: adr/0022-qpu-cloud-usage-limits.md
+          - YAML contracts: adr/0023-configuration-and-contracts-in-yaml.md
+          - JSONL logs: adr/0024-structured-jsonl-logs-and-wave-ids.md
+  - RFCs: 
+      - Index: rfc/index.md
+      - Documents:
+          - IR Specification: rfc/01-ir-spec.md
+          - Runtime API: rfc/02-runtime-api.md
+          - HEFT Scheduler with Malleability: rfc/03-scheduler-heft-malleability.md
+          - Tensor Stitching and GPU Data Layout: rfc/04-stitching-tensor-data-layout.md
+          - Observability and M1–M2 Feedback Loop: rfc/05-observability-feedback.md
+          - QPU Credential Security and Threat Model: rfc/06-security-credentials.md
+
+extra_javascript:
+  - javascripts/mermaid.mjs
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - css/rtd-look.css
+  
+extra:
+  version:
+      provider: mike
+      default: stable
+      alias: true
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ToroData/hpcqc-docs
+      name: GitHub
+  generator: false
+
+repo_url: https://github.com/ToroData/hpcqc-docs

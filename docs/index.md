@@ -1,5 +1,8 @@
 # HPCQC Hybrid Stack Documentation
 
+> [!NOTE]  
+> Testing first version deploy.
+
 This repository provides the architectural and design documentation for the Hybrid High-Performance Computing and Quantum Computing (HPCQC) Stack, currently under development as part of a research proposal. Covers the software architecture and runtime design. The documentation defines the conceptual, logical, and technical foundations of a hybrid runtime that integrates classical HPC resources with quantum backends under a unified software stack. It focuses on design rationale, interoperability between ecosystems, and formal reproducibility of hybrid workflows.
 
 This document focuses solely on the software stack and the runtime orchestration layer, i.e., the components that enable execution, scheduling, data management, and observability in an HPCQC backend. Therefore, this documentation does not cover the theoretical framework of space-time circuit knitting, which constitutes the scientific foundation motivating this proposal. This framework considers that a quantum circuit can be decomposed into subcircuits that can be analysed and redirected to heterogeneous backends. Certain partitions are executed on HPC nodes with classical computing, while others are executed on QPU nodes or quantum clouds. In this way, we understand that bidirectional optimization is achieved.

@@ -53,5 +53,5 @@ jobs:
         run: |
           version="${{ steps.v.outputs.value }}"
           echo "Deploying version ${version}"
-          mike deploy --push --branch gh-pages --update-aliases latest "${version}"
+          mike deploy --push --branch gh-pages --update --update-aliases latest "${version}"
           mike set-default --push --branch gh-pages "${version}"

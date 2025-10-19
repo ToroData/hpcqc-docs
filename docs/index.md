@@ -4,7 +4,7 @@ This repository provides the architectural and design documentation for the Hybr
 
 This document focuses solely on the software stack and the runtime orchestration layer, i.e., the components that enable execution, scheduling, data management, and observability in an HPCQC backend. Therefore, this documentation does not cover the theoretical framework of space-time circuit knitting, which constitutes the scientific foundation motivating this proposal. This framework considers that a quantum circuit can be decomposed into subcircuits that can be analysed and redirected to heterogeneous backends. Certain partitions are executed on HPC nodes with classical computing, while others are executed on QPU nodes or quantum clouds. In this way, we understand that bidirectional optimization is achieved.
 
-First, temporal optimization is achieved through malleability—dynamically resizing MPI teams during QPU idle phases (a concept introduced in Rocco et al. (2025)[^1]). Specifically, classical idle nodes are minimized to $k$ nodes; where $k$ nodes correspond to each active node executing the computation of a subcircuit.
+First, temporal optimization is achieved through malleability —dynamically resizing MPI teams during QPU idle phases (a concept introduced in Rocco et al. (2025)[^1]). Specifically, classical idle nodes are minimized to $k$ nodes; where $k$ nodes correspond to each active node executing the computation of a subcircuit.
 
 Second, spatial optimization is achieved through hybrid executions using HPC as an active classical coprocessor for subcircuits under the MPI paradigm. It is understood that classical computing can push the limits of NISQ quantum computers by offloading circuit depth.
 

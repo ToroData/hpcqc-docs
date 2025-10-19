@@ -40,8 +40,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mike delete --push --branch gh-pages stable || true
-          mike delete --push --branch gh-pages latest || true
+          mike delete --push --branch gh-pages --alias stable || true
+          mike delete --push --branch gh-pages --alias latest || true
       - name: Deploy stable (update + latest)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

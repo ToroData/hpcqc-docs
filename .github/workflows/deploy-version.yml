@@ -45,7 +45,6 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "value=${{ inputs.version }}" >> $GITHUB_OUTPUT
           else
-            # tag refs/tags/v0.2.0 -> 0.2.0
             echo "value=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
           fi
       - name: Deploy numbered version and update latest

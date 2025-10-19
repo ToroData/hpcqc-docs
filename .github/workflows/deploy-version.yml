@@ -50,7 +50,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ver="${{ steps.v.outputs.value }}"
-          echo "Deploying version ${ver}"
-          mike deploy --push --branch gh-pages "${ver}" --update-aliases latest
-          mike set-default --push --branch gh-pages "${ver}"
+          version="${{ steps.v.outputs.value }}"
+          echo "Deploying version ${version}"
+          mike deploy --push --branch gh-pages --update-aliases latest "${version}"
+          mike set-default --push --branch gh-pages "${version}"

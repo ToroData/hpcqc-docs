@@ -39,5 +39,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mike deploy --push --branch gh-pages stable --update --update-aliases latest
+          mike deploy --push --branch gh-pages --update --update-aliases latest stable
           mike set-default --push --branch gh-pages stable

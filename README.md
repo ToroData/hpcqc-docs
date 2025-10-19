@@ -1,4 +1,8 @@
 # HPC–QC Hybrid Stack Documentation
 
-[![Docs Build](https://github.com/ToroData/hpcqc-docs/actions/workflows/deploy-stable.yml/badge.svg)](https://github.com/ToroData/hpcqc-docs/actions/workflows/deploy-stable.yml) [![Latest Release](https://img.shields.io/github/v/release/ToroData/hpcqc-docs?label=version)](https://github.com/ToroData/hpcqc-docs/releases) [![Docs](https://img.shields.io/badge/docs-online-blue)](https://torodata.github.io/hpcqc-docs/stable/)
-[![License](https://img.shields.io/github/license/ToroData/hpcqc-docs?color=blue)](LICENSE)
+[![Docs Build](https://github.com/ToroData/hpcqc-docs/actions/workflows/deploy-stable.yml/badge.svg)](https://github.com/ToroData/hpcqc-docs/actions/workflows/deploy-stable.yml) [![Latest Release](https://img.shields.io/github/v/release/ToroData/hpcqc-docs?label=version)](https://github.com/ToroData/hpcqc-docs/releases) [![Docs](https://img.shields.io/badge/docs-online-blue)](https://torodata.github.io/hpcqc-docs/stable/) [![License](https://img.shields.io/github/license/ToroData/hpcqc-docs?color=blue)](LICENSE)
+
+
+This repository provides the architectural and design documentation for the Hybrid High-Performance Computing and Quantum Computing (HPCQC) Stack, currently under development as part of a research proposal. Covers the software architecture and runtime design. The documentation defines the conceptual, logical, and technical foundations of a hybrid runtime that integrates classical HPC resources with quantum backends under a unified software stack. It focuses on design rationale, interoperability between ecosystems, and formal reproducibility of hybrid workflows.
+
+Currently, this documentation is in the proposal and design phase —no production implementation yet.

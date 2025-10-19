@@ -102,7 +102,8 @@ nav:
           - Tensor Stitching and GPU Data Layout: rfc/04-stitching-tensor-data-layout.md
           - Observability and M1–M2 Feedback Loop: rfc/05-observability-feedback.md
           - QPU Credential Security and Threat Model: rfc/06-security-credentials.md
-
+          - Deployment and Operations: rfc/07-deployment-operations.md
+          - Scientific Validation and Benchmarking (N2 Case): rfc/08-validation-n2-benchmark.md
 extra_javascript:
   - javascripts/mermaid.mjs
   - javascripts/mathjax.js

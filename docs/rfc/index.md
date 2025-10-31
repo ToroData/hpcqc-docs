@@ -32,7 +32,9 @@ This section contains all Request for Comments (RFC) documents that complement a
 
 - RFCs are living documents subject to revision until the prototype phase.
 - Each RFC is versioned and cross-referenced to its related ADRs.
-- Once implementation begins, additional RFCs will cover:
-  - SBOM and dependency traceability
-  - CI/CD and testing strategy
-  - RACI matrices for engineering governance
+
+Once implementation begins, additional RFCs will cover:
+
+- SBOM and dependency traceability
+- CI/CD and testing strategy
+- RACI matrices for engineering governance

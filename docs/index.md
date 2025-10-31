@@ -130,6 +130,7 @@ The stack structure begins with circuit submission via CLI or Python bindings. F
 
 | Section | Description |
 |----------|--------------|
+|[SDLC](sdlc/sdlc.md)| Software Development LifeCycle |
 | [C4 Architecture Views](architecture/index.md) | Multi-level system diagrams (Context → Container → Component → Deployment → Scenario). |
 | [Architecture Decision Records (ADRs)](adr/index.md) | Formalized design decisions following the [Nygard ADR pattern](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions). |
 | [RFCs](rfc/index.md) | Detailed technical specifications and protocols that complement the ADRs. |

@@ -33,7 +33,7 @@ flowchart LR
 
 ## 2. Ingestion and normalization
 
-At container start, the runtime reads a YAML configuration document that sets resource limits, vendor credentials, scheduling preferences, and other parameters. The quantum circuit is accepted into OpenQASM3 and parsed to generate an internal directed spacetime acyclic graph. This internal representation preserves allocation or mapping indications and metadata such as the number of two-qubits per region, the expected depth per layer, and the logical boundaries that define natural slicing opportunities. Therefore, the ingestion phase is deterministic, and the output is the canonical graph used by the partitioner and scheduler.
+At execution start, the runtime reads a YAML configuration document that sets resource limits, vendor credentials, scheduling preferences, and other parameters. The quantum circuit is accepted into OpenQASM3 and parsed to generate an internal directed spacetime acyclic graph. This internal representation preserves allocation or mapping indications and metadata such as the number of two-qubits per region, the expected depth per layer, and the logical boundaries that define natural slicing opportunities. Therefore, the ingestion phase is deterministic, and the output is the canonical graph used by the partitioner and scheduler.
 
 ## 3. Partitioning in space and time
 
@@ -49,7 +49,7 @@ Following ingestion and partitioning, the runtime environment operates a continu
 
 The scheduler maintains three logical queues backed by a single graph that considers dependencies: a ready queue for classical subcircuits, a ready queue for quantum subcircuits, and an adaptive boundary for undecided subcircuits.
 
-Subcircuits in a ready queue for classical execution are immediately sent to the MPI (Multi-Process Intake) environment; while subcircuits in the quantum execution queue are sent directly to the quantum backend. Undecided subcircuits, on the other hand, are resolved in each scheduler update by consulting the cost-fidelity model and the current state of the system. Often, it is unclear whether some potential partitions offer a real benefit in running classically or quantum. Therefore, this concept allows us to enhance the performance and utilization of the hybrid system by deciding where to allocate these types of subcircuits.
+Subcircuits in a ready queue for classical execution are immediately sent to the MPI (Message Passing Interface) environment; while subcircuits in the quantum execution queue are sent directly to the quantum backend. Undecided subcircuits, on the other hand, are resolved in each scheduler update by consulting the cost-fidelity model and the current state of the system. Often, it is unclear whether some potential partitions offer a real benefit in running classically or quantum. Therefore, this concept allows us to enhance the performance and utilization of the hybrid system by deciding where to allocate these types of subcircuits.
 
 This continuous model preserves graph-level determinism and maximizes performance: execution time is never delayed by pending quantum submissions, nor is it blocked by classical batches still being processed. The undecided class allows the scheduler to leverage the latest telemetry and queue signals before definitively assigning a subcircuit to a backend.
 
@@ -85,7 +85,7 @@ flowchart LR
 
 Malleability is implemented as a continuous control loop, rather than as a phase boundary. The scheduler monitors the classical queue, tensor-contraction load, communication pressure, and the expected duration of pending quantum requests. Based on these signals, it generates suggestions for the malleable MPI application to expand, shrink, or maintain the current allocation.
 
-The suggestions are synchronized at safe points in the application's control flow, typically before or after shrinkage segments that can be controlled by checkpoints. This mechanism does not require pausing all work: the malleable library negotiates the reconfiguration with the resource manager and exposes an intercommunicator to redistribute the data. The result is that the classical capacity $k$ adjusts to the instantaneous combination of the classical queue and the downtime induced by quantum computing.
+The suggestions are synchronized at synchronization points in the application's control flow, typically before or after shrinkage segments that can be controlled by checkpoints. This mechanism does not require pausing all work: the malleable library negotiates the reconfiguration with the resource manager and exposes an intercommunicator to redistribute the data. The result is that the classical capacity $k$ adjusts to the instantaneous combination of the classical queue and the downtime induced by quantum computing.
 
 ```mermaid
 stateDiagram-v2
